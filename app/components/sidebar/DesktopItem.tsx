@@ -27,7 +27,7 @@ const DesktopItem: React.FC<DesktopItemProps> = ({ label, icon: Icon, href, onCl
                     flex
                     gap-x-3
                     rounded-md
-                    p-3
+                    py-3
                     text-sm
                     leading-6
                     font-semibold
@@ -35,7 +35,7 @@ const DesktopItem: React.FC<DesktopItemProps> = ({ label, icon: Icon, href, onCl
                     hover:text-black
                     hover:bg-gray-100
                 `,
-                    active && "bg-gray-100 text-black"
+                    active && "bg-gray-200 text-black"
                 )}
             >
                 <Icon className="h-6 w-6 shrink-0" />

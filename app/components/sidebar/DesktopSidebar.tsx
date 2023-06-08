@@ -16,7 +16,7 @@ const DesktopSidebar = () => {
             lg:left-0
             lg:z-40
             lg:w-20
-            xl:px-6
+            xl:px-2
             lg:overflow-y-auto
             lg:bg-white
             lg:border-r-[1px]
