@@ -17,6 +17,7 @@ const MobileFooter = () => {
     return (
         <div className="
             fixed
+            lg:hidden
             justify-between
             w-full
             bottom-0
@@ -25,7 +26,6 @@ const MobileFooter = () => {
             items-center
             bg-white
             border-t-[1px]
-            lg:hidden
         ">
             {
                 routes.map((route) => <MobileItem

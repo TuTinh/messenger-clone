@@ -19,18 +19,18 @@ type Variant = "LOGIN" | "REGISTER"
 
 
 const AuthForm = () => {
+
     const session = useSession()
     const router = useRouter()
     const [variant, setVariant] = useState<Variant>("LOGIN")
     const [isLoading, setIsLoading] = useState(false)
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>({
-        defaultValues: {
-            name: "",
-            email: "",
-            password: ""
+    useEffect(() => {
+        if (session?.status === "authenticated") {
+            console.log("authenticated");
+            router.push("/users")
         }
-    })
+    }, [session?.status, router])
 
     const toggleVariant = useCallback(() => {
         if (variant === "LOGIN") {
@@ -40,6 +40,13 @@ const AuthForm = () => {
         }
     }, [variant])
 
+    const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>({
+        defaultValues: {
+            name: "",
+            email: "",
+            password: ""
+        }
+    })
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true)
@@ -73,23 +80,14 @@ const AuthForm = () => {
         signIn(action, { redirect: false })
             .then((callback) => {
                 if (callback?.error) {
-                    toast.error("Invalid Credentials")
+                    toast.error("Invalid Credentials!")
                 }
-
                 if (callback?.ok && !callback?.error) {
                     toast.success("Logged in!")
                 }
             })
             .finally(() => setIsLoading(false))
     }
-
-
-    useEffect(() => {
-        if (session?.status === 'authenticated') {
-            console.log("session = ", session)
-            router.push("/users")
-        }
-    }, [session?.status, router])
 
 
 
